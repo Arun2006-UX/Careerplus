@@ -40,27 +40,27 @@ export const LandingPage: React.FC = () => {
   const featuredJobs = jobs.slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       {/* 1. Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-200/80 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50">
-        <div className="absolute inset-0 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+      <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-200/80 dark:border-slate-800 bg-gradient-to-b from-indigo-50/50 via-white to-slate-50 dark:from-slate-900/60 dark:via-slate-950 dark:to-slate-900/60">
+        <div className="absolute inset-0 bg-[radial-gradient(#e0e7ff_1px,transparent_1px)] dark:bg-[radial-gradient(#312e81_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/80 border border-indigo-200 text-indigo-800 text-xs font-bold tracking-wide uppercase shadow-2xs">
-                <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100/80 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold tracking-wide uppercase shadow-2xs">
+                <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                 <span>Next-Gen TF-IDF NLP Matching</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 tracking-tight leading-[1.12]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-950 dark:text-white tracking-tight leading-[1.12]">
                 Find the Right Opportunity.{' '}
                 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Faster.
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-600 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 CareerPulse uses intelligent job matching to connect your skills, experience and preferences with opportunities that fit you.
               </p>
 
@@ -76,47 +76,48 @@ export const LandingPage: React.FC = () => {
 
                 <button
                   onClick={() => setActiveTab('jobs')}
-                  className="px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex items-center gap-2"
+                  className="px-6 py-3.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-bold text-sm rounded-xl border border-slate-200 dark:border-slate-700 shadow-xs hover:border-slate-300 dark:hover:border-slate-600 transition-all flex items-center gap-2"
                 >
-                  <Search className="w-4 h-4 text-slate-500" />
+                  <Search className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                   <span>Explore Jobs</span>
                 </button>
               </div>
 
               {/* Fast Login Shortcuts for Demo Presentation */}
-              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-600">
-                <span className="font-semibold text-slate-400">Quick Access:</span>
+              <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-600 dark:text-slate-400">
+                <span className="font-semibold text-slate-400 dark:text-slate-500">Quick Access:</span>
                 <button
                   onClick={() => {
                     setUserRole('candidate');
                     setActiveTab('candidate-dashboard');
                   }}
-                  className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline flex items-center gap-1"
+                  className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-bold hover:underline flex items-center gap-1"
                 >
                   <UserCheck className="w-3.5 h-3.5" />
                   <span>Candidate Login</span>
                 </button>
-                <span className="text-slate-300">•</span>
+                <span className="text-slate-300 dark:text-slate-700">•</span>
                 <button
                   onClick={() => {
                     setUserRole('recruiter');
                     setActiveTab('recruiter-dashboard');
                   }}
-                  className="text-blue-600 hover:text-blue-800 font-bold hover:underline flex items-center gap-1"
+                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-bold hover:underline flex items-center gap-1"
                 >
                   <Briefcase className="w-3.5 h-3.5" />
                   <span>Recruiter Login</span>
                 </button>
-                <span className="text-slate-300">•</span>
+                <span className="text-slate-300 dark:text-slate-700">•</span>
                 <button
                   onClick={() => setActiveTab('presentation')}
-                  className="text-purple-600 hover:text-purple-800 font-bold hover:underline flex items-center gap-1"
+                  className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 font-bold hover:underline flex items-center gap-1"
                 >
                   <Award className="w-3.5 h-3.5" />
                   <span>Jury Mode</span>
                 </button>
               </div>
             </div>
+
 
             {/* Right: Visual Representation of the AI Matching System (Animated Pipeline) */}
             <div className="lg:col-span-5">
@@ -271,61 +272,61 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 2. How CareerPulse Works */}
-      <section className="py-20 bg-white border-b border-slate-200">
+      <section className="py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <h2 className="text-xs font-bold text-indigo-600 uppercase tracking-widest">
+            <h2 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
               Simple 4-Step Workflow
             </h2>
-            <p className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <p className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               How CareerPulse Works
             </p>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 dark:text-slate-300 text-base">
               A transparent, algorithm-driven journey from profile creation to offer acceptance.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Step 1 */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all group relative">
-              <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group relative">
+              <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
                 1
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Create Your Profile</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Create Your Profile</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Add skills, experience, education, preferred locations, and target roles or upload your resume for automatic parsing.
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all group relative">
-              <div className="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group relative">
+              <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
                 2
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Discover Relevant Jobs</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Discover Relevant Jobs</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Explore curated tech opportunities filtered by domain, work format, experience band, and technology stacks.
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all group relative">
-              <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group relative">
+              <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
                 3
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Get AI-Powered Matches</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Get AI-Powered Matches</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Our TF-IDF vectorizer and multi-signal engine ranks each posting with an explainable compatibility percentage.
               </p>
             </div>
 
             {/* Step 4 */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 hover:border-indigo-300 hover:shadow-md transition-all group relative">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
+            <div className="bg-slate-50 dark:bg-slate-800/80 p-6 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group relative">
+              <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 flex items-center justify-center font-black text-lg mb-5 group-hover:scale-110 transition-transform">
                 4
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Apply &amp; Track Progress</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Apply &amp; Track Progress</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Submit applications with 1-click and watch your status advance from Applied to Under Review, Interview, and Offer.
               </p>
             </div>
@@ -334,83 +335,83 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 3. Why CareerPulse */}
-      <section className="py-20 bg-slate-50 border-b border-slate-200">
+      <section className="py-20 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-            <h2 className="text-xs font-bold text-indigo-600 uppercase tracking-widest">
+            <h2 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
               Core Architectural Pillars
             </h2>
-            <p className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <p className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               Why CareerPulse
             </p>
-            <p className="text-slate-600 text-base">
+            <p className="text-slate-600 dark:text-slate-300 text-base">
               Engineered to replace opaque resume black-holes with transparent, explainable matching.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
                 <Cpu className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Intelligent Job Matching</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Intelligent Job Matching</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Transforms unstructured resumes and job specifications into high-dimensional TF-IDF vectors for cosine similarity computation.
               </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-4">
                 <Sparkles className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Personalized Recommendations</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Personalized Recommendations</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Dynamically tailors suggested job feeds based on your verified skillset, career objectives, and location preferences.
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
                 <Search className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Smart Job Search</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Smart Job Search</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Multi-faceted filtering across salary, remote/hybrid formats, technology stacks, and experience levels with instant sorting.
               </p>
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
                 <TrendingUp className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Application Tracking</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Application Tracking</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Visual Kanban-style pipeline tracking every stage: Applied &rarr; Under Review &rarr; Interview &rarr; Offer with audit timestamps.
               </p>
             </div>
 
             {/* Feature 5 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-4">
                 <Briefcase className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Recruiter Management</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Recruiter Management</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Empowers recruiters to publish positions, evaluate incoming talent ranked by match percentage, and update stages seamlessly.
               </p>
             </div>
 
             {/* Feature 6 */}
-            <div className="bg-white p-7 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-slate-900 p-7 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs hover:shadow-md transition-all">
+              <div className="w-10 h-10 rounded-xl bg-rose-50 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-4">
                 <Shield className="w-5 h-5" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">Explainable Recommendations</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Explainable Recommendations</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 No black-box mystery. Candidates and hiring teams see explicit breakdowns of skills overlap, role alignment, and experience fit.
               </p>
             </div>
@@ -419,23 +420,23 @@ export const LandingPage: React.FC = () => {
       </section>
 
       {/* 4. Featured / Trending Jobs */}
-      <section className="py-20 bg-white border-b border-slate-200">
+      <section className="py-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-              <h2 className="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-2">
+              <h2 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-2">
                 Live Openings
               </h2>
-              <p className="text-3xl font-black text-slate-900 tracking-tight">
+              <p className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                 Featured &amp; Trending Jobs
               </p>
-              <p className="text-slate-600 text-sm mt-1">
+              <p className="text-slate-600 dark:text-slate-400 text-sm mt-1">
                 Matched against demo candidate profile ({currentCandidate.name})
               </p>
             </div>
             <button
               onClick={() => setActiveTab('jobs')}
-              className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 hover:text-indigo-800"
+              className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
             >
               <span>View all {jobs.length} jobs</span>
               <ArrowRight className="w-4 h-4" />
@@ -448,7 +449,7 @@ export const LandingPage: React.FC = () => {
               return (
                 <div
                   key={job.job_id}
-                  className="bg-white rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                  className="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200 dark:border-slate-700/80 hover:border-indigo-300 dark:hover:border-indigo-500 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Logo, Company & Match Badge */}
@@ -457,13 +458,13 @@ export const LandingPage: React.FC = () => {
                         <img
                           src={job.company_logo}
                           alt={job.company}
-                          className="w-12 h-12 rounded-xl object-cover border border-slate-100 shadow-2xs"
+                          className="w-12 h-12 rounded-xl object-cover border border-slate-100 dark:border-slate-700 shadow-2xs"
                         />
                         <div>
-                          <h4 className="text-base font-bold text-slate-900 hover:text-indigo-600 cursor-pointer" onClick={() => openJobDetails(job.job_id)}>
+                          <h4 className="text-base font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer" onClick={() => openJobDetails(job.job_id)}>
                             {job.title}
                           </h4>
-                          <p className="text-xs text-slate-500 font-medium">{job.company} • {job.industry}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{job.company} • {job.industry}</p>
                         </div>
                       </div>
 
@@ -471,10 +472,10 @@ export const LandingPage: React.FC = () => {
                       <div className="flex flex-col items-end">
                         <div className={`px-2.5 py-1 rounded-full text-xs font-black flex items-center gap-1 ${
                           match.overallScore >= 85
-                            ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                            ? 'bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
                             : match.overallScore >= 70
-                            ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                            : 'bg-slate-100 text-slate-700'
+                            ? 'bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                         }`}>
                           <Sparkles className="w-3 h-3" />
                           <span>{match.overallScore}% Match</span>
@@ -483,23 +484,23 @@ export const LandingPage: React.FC = () => {
                     </div>
 
                     {/* Metadata tags */}
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 my-3">
-                      <span className="flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-md">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400 my-3">
+                      <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/60 px-2 py-1 rounded-md text-slate-700 dark:text-slate-300">
                         <MapPin className="w-3.5 h-3.5 text-slate-400" />
                         <span>{job.location}</span>
                       </span>
-                      <span className="flex items-center gap-1 bg-slate-100 px-2 py-1 rounded-md">
+                      <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-700/60 px-2 py-1 rounded-md text-slate-700 dark:text-slate-300">
                         <Clock className="w-3.5 h-3.5 text-slate-400" />
                         <span>{job.work_type}</span>
                       </span>
-                      <span className="bg-indigo-50 text-indigo-700 px-2 py-1 rounded-md font-semibold">
+                      <span className="bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded-md font-semibold border border-indigo-200/50 dark:border-indigo-800/50">
                         {job.salary_range}
                       </span>
                     </div>
 
                     {/* Explainable match reason preview */}
-                    <div className="p-2.5 rounded-lg bg-indigo-50/50 border border-indigo-100 text-xs text-indigo-900 mb-4">
-                      <span className="font-semibold text-indigo-700">Why it matches: </span>
+                    <div className="p-2.5 rounded-lg bg-indigo-50/50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60 text-xs text-indigo-900 dark:text-indigo-200 mb-4">
+                      <span className="font-semibold text-indigo-700 dark:text-indigo-400">Why it matches: </span>
                       {match.explanation}
                     </div>
 
@@ -508,13 +509,13 @@ export const LandingPage: React.FC = () => {
                       {job.skills.slice(0, 4).map(skill => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700"
+                          className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300"
                         >
                           {skill}
                         </span>
                       ))}
                       {job.skills.length > 4 && (
-                        <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-500">
+                        <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-700/60 text-slate-500 dark:text-slate-400">
                           +{job.skills.length - 4} more
                         </span>
                       )}
@@ -522,13 +523,13 @@ export const LandingPage: React.FC = () => {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
                     <span className="text-[11px] text-slate-400">
                       Posted on {job.posted_at}
                     </span>
                     <button
                       onClick={() => openJobDetails(job.job_id)}
-                      className="px-4 py-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors flex items-center gap-1"
+                      className="px-4 py-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 rounded-lg transition-colors flex items-center gap-1"
                     >
                       <span>View Details</span>
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -541,12 +542,13 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
+
       {/* 5. For Candidates & For Recruiters Value Sections */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-slate-50 dark:bg-slate-950 transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* For Candidates Card */}
-            <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white p-8 sm:p-10 rounded-3xl shadow-xl flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-indigo-900 to-slate-900 dark:from-indigo-950 dark:to-slate-900 text-white p-8 sm:p-10 rounded-3xl shadow-xl border border-indigo-800/40 dark:border-indigo-900/60 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
                   <UserCheck className="w-3.5 h-3.5" />
@@ -590,7 +592,7 @@ export const LandingPage: React.FC = () => {
             </div>
 
             {/* For Recruiters Card */}
-            <div className="bg-gradient-to-br from-blue-900 to-slate-900 text-white p-8 sm:p-10 rounded-3xl shadow-xl flex flex-col justify-between">
+            <div className="bg-gradient-to-br from-blue-900 to-slate-900 dark:from-blue-950 dark:to-slate-900 text-white p-8 sm:p-10 rounded-3xl shadow-xl border border-blue-800/40 dark:border-blue-900/60 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase tracking-wider border border-blue-500/30">
                   <Briefcase className="w-3.5 h-3.5" />

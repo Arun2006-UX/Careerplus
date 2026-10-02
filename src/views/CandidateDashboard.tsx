@@ -66,42 +66,42 @@ export const CandidateDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 px-4 sm:px-6 lg:px-8 transition-colors">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Greeting Section */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-indigo-50 to-transparent pointer-events-none"></div>
+        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-indigo-50 dark:from-indigo-950/30 to-transparent pointer-events-none"></div>
 
           <div className="space-y-2 relative">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-200/60">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 text-xs font-bold border border-indigo-200/60 dark:border-indigo-800">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Candidate Portal</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Good morning, {currentCandidate.name}
             </h1>
-            <p className="text-slate-500 text-sm max-w-xl">
-              Here is your AI matching overview. Based on your profile as a <strong className="text-slate-800">{currentCandidate.target_role}</strong>, we've identified high-compatibility openings.
+            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-xl">
+              Here is your AI matching overview. Based on your profile as a <strong className="text-slate-800 dark:text-slate-200">{currentCandidate.target_role}</strong>, we've identified high-compatibility openings.
             </p>
           </div>
 
           {/* Profile Completion widget */}
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 w-full md:w-72 shrink-0">
+          <div className="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 w-full md:w-72 shrink-0">
             <div className="flex items-center justify-between text-xs font-bold mb-2">
-              <span className="text-slate-700">Profile Strength</span>
-              <span className="text-indigo-600 font-extrabold">{currentCandidate.profile_completion}%</span>
+              <span className="text-slate-700 dark:text-slate-200">Profile Strength</span>
+              <span className="text-indigo-600 dark:text-indigo-400 font-extrabold">{currentCandidate.profile_completion}%</span>
             </div>
-            <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden mb-2">
+            <div className="w-full bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden mb-2">
               <div
                 className="bg-gradient-to-r from-blue-600 to-indigo-600 h-full rounded-full transition-all duration-500"
                 style={{ width: `${currentCandidate.profile_completion}%` }}
               ></div>
             </div>
-            <div className="flex items-center justify-between text-[11px] text-slate-500">
+            <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span>{currentCandidate.resume_name ? 'Resume Attached' : 'Missing resume'}</span>
               <button
                 onClick={() => setActiveTab('profile')}
-                className="text-indigo-600 font-bold hover:underline"
+                className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline"
               >
                 Improve Profile &rarr;
               </button>
@@ -114,38 +114,38 @@ export const CandidateDashboard: React.FC = () => {
           {/* Total Applications */}
           <div
             onClick={() => setActiveTab('applications')}
-            className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-md transition-all cursor-pointer group"
+            className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-500 shadow-xs hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Applications
               </span>
-              <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <FileText className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl font-black text-slate-900 mb-1">{totalApps}</div>
-            <div className="text-xs text-slate-500 flex items-center gap-1">
+            <div className="text-3xl font-black text-slate-900 dark:text-white mb-1">{totalApps}</div>
+            <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
               <span>View all submitted</span>
-              <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:text-indigo-600" />
+              <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" />
             </div>
           </div>
 
           {/* Under Review */}
           <div
             onClick={() => setActiveTab('applications')}
-            className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-amber-300 shadow-xs hover:shadow-md transition-all cursor-pointer group"
+            className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-500 shadow-xs hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Under Review
               </span>
-              <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Clock className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl font-black text-slate-900 mb-1">{underReviewCount}</div>
-            <div className="text-xs text-amber-600 font-medium flex items-center gap-1">
+            <div className="text-3xl font-black text-slate-900 dark:text-white mb-1">{underReviewCount}</div>
+            <div className="text-xs text-amber-600 dark:text-amber-400 font-medium flex items-center gap-1">
               <span>Shortlisted by hiring teams</span>
             </div>
           </div>
@@ -153,18 +153,18 @@ export const CandidateDashboard: React.FC = () => {
           {/* Interviews */}
           <div
             onClick={() => setActiveTab('applications')}
-            className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-purple-300 shadow-xs hover:shadow-md transition-all cursor-pointer group"
+            className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-purple-300 dark:hover:border-purple-500 shadow-xs hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Interviews
               </span>
-              <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-9 h-9 rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Calendar className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl font-black text-slate-900 mb-1">{interviewCount}</div>
-            <div className="text-xs text-purple-600 font-medium flex items-center gap-1">
+            <div className="text-3xl font-black text-slate-900 dark:text-white mb-1">{interviewCount}</div>
+            <div className="text-xs text-purple-600 dark:text-purple-400 font-medium flex items-center gap-1">
               <span>Rounds scheduled</span>
             </div>
           </div>
@@ -172,18 +172,18 @@ export const CandidateDashboard: React.FC = () => {
           {/* Offers */}
           <div
             onClick={() => setActiveTab('applications')}
-            className="bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-300 shadow-xs hover:shadow-md transition-all cursor-pointer group"
+            className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-emerald-300 dark:hover:border-emerald-500 shadow-xs hover:shadow-md transition-all cursor-pointer group"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Offers
               </span>
-              <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <CheckCircle2 className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl font-black text-slate-900 mb-1">{offerCount}</div>
-            <div className="text-xs text-emerald-600 font-medium flex items-center gap-1">
+            <div className="text-3xl font-black text-slate-900 dark:text-white mb-1">{offerCount}</div>
+            <div className="text-xs text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1">
               <span>Extended to you</span>
             </div>
           </div>
@@ -194,21 +194,21 @@ export const CandidateDashboard: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">
+                <h2 className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                   AI Recommended Jobs
                 </h2>
-                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
                   TF-IDF + Multi-Signal
                 </span>
               </div>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Calculated using natural language cosine similarity and skill vector overlap
               </p>
             </div>
 
             <button
               onClick={() => setActiveTab('recommended')}
-              className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1"
             >
               <span>View all AI recommendations</span>
               <ChevronRight className="w-4 h-4" />
@@ -224,7 +224,7 @@ export const CandidateDashboard: React.FC = () => {
               return (
                 <div
                   key={job.job_id}
-                  className="bg-white rounded-2xl p-5 border border-slate-200 hover:border-indigo-300 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                  className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-600 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Logo, Match Score, Save button */}
@@ -233,16 +233,16 @@ export const CandidateDashboard: React.FC = () => {
                         <img
                           src={job.company_logo}
                           alt={job.company}
-                          className="w-10 h-10 rounded-xl object-cover border border-slate-100"
+                          className="w-10 h-10 rounded-xl object-cover border border-slate-100 dark:border-slate-800"
                         />
                         <div>
                           <h3
                             onClick={() => openJobDetails(job.job_id)}
-                            className="text-sm font-bold text-slate-900 hover:text-indigo-600 cursor-pointer line-clamp-1"
+                            className="text-sm font-bold text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 cursor-pointer line-clamp-1"
                           >
                             {job.title}
                           </h3>
-                          <p className="text-xs text-slate-500 font-medium">{job.company}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{job.company}</p>
                         </div>
                       </div>
 
@@ -250,8 +250,8 @@ export const CandidateDashboard: React.FC = () => {
                         onClick={() => toggleSaveJob(job.job_id)}
                         className={`p-1.5 rounded-lg border transition-colors ${
                           isSaved
-                            ? 'bg-indigo-50 border-indigo-200 text-indigo-600'
-                            : 'bg-slate-50 border-slate-200 text-slate-400 hover:text-slate-600'
+                            ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-200 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400'
+                            : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
                         }`}
                         title={isSaved ? 'Remove from Saved' : 'Save Job'}
                       >
@@ -260,34 +260,34 @@ export const CandidateDashboard: React.FC = () => {
                     </div>
 
                     {/* AI Match % Badge */}
-                    <div className="flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-indigo-50/70 border border-indigo-100 mb-3">
+                    <div className="flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-indigo-50/70 dark:bg-indigo-950/60 border border-indigo-100 dark:border-indigo-900 mb-3">
                       <div className="flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-                        <span className="text-xs font-black text-indigo-900">
+                        <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                        <span className="text-xs font-black text-indigo-900 dark:text-indigo-200">
                           AI Match: {job.match.overallScore}%
                         </span>
                       </div>
-                      <span className="text-[10px] text-indigo-600 font-bold uppercase">
+                      <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase">
                         {job.match.overallScore >= 88 ? 'Excellent' : 'Strong'}
                       </span>
                     </div>
 
                     {/* Explainable Why This Matches Text (strictly as requested in specification) */}
-                    <div className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-100 mb-3 leading-relaxed">
-                      <span className="font-semibold text-slate-800">Why this matches: </span>
+                    <div className="text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-lg border border-slate-100 dark:border-slate-800 mb-3 leading-relaxed">
+                      <span className="font-semibold text-slate-800 dark:text-slate-100">Why this matches: </span>
                       {job.match.explanation}
                     </div>
 
                     {/* Location, Work type, Experience */}
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 mb-3">
-                      <span className="flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                      <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-slate-700 dark:text-slate-300">
                         <MapPin className="w-3 h-3 text-slate-400" />
                         <span>{job.location.split(',')[0]}</span>
                       </span>
-                      <span className="bg-slate-100 px-2 py-0.5 rounded font-medium">
+                      <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded font-medium text-slate-700 dark:text-slate-300">
                         {job.work_type}
                       </span>
-                      <span className="bg-slate-100 px-2 py-0.5 rounded font-medium">
+                      <span className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded font-medium text-slate-700 dark:text-slate-300">
                         {job.level}
                       </span>
                     </div>
@@ -297,13 +297,13 @@ export const CandidateDashboard: React.FC = () => {
                       {job.skills.slice(0, 3).map(skill => (
                         <span
                           key={skill}
-                          className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 text-slate-700"
+                          className="px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
                         >
                           {skill}
                         </span>
                       ))}
                       {job.skills.length > 3 && (
-                        <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-400 bg-slate-100">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
                           +{job.skills.length - 3}
                         </span>
                       )}
@@ -311,16 +311,16 @@ export const CandidateDashboard: React.FC = () => {
                   </div>
 
                   {/* Actions: View Job & Apply */}
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
                     <button
                       onClick={() => openJobDetails(job.job_id)}
-                      className="px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                     >
                       View Job
                     </button>
 
                     {alreadyApplied ? (
-                      <span className="px-3 py-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 flex items-center gap-1">
+                      <span className="px-3 py-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 rounded-lg border border-emerald-200 dark:border-emerald-800 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Applied</span>
                       </span>
@@ -340,58 +340,58 @@ export const CandidateDashboard: React.FC = () => {
         </div>
 
         {/* Section: Recent Applications Snapshot */}
-        <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-base font-bold text-slate-900">Your Active Applications</h3>
-              <p className="text-xs text-slate-500">Track candidate status progression in real-time</p>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Your Active Applications</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Track candidate status progression in real-time</p>
             </div>
             <button
               onClick={() => setActiveTab('applications')}
-              className="text-xs font-bold text-indigo-600 hover:text-indigo-800"
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300"
             >
               Full Application Pipeline &rarr;
             </button>
           </div>
 
           {candidateApps.length === 0 ? (
-            <div className="py-8 text-center text-slate-500 text-xs">
+            <div className="py-8 text-center text-slate-500 dark:text-slate-400 text-xs">
               No applications submitted yet. Explore recommended jobs above and click Apply!
             </div>
           ) : (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-slate-100 dark:divide-slate-800">
               {candidateApps.slice(0, 3).map(app => (
                 <div key={app.application_id} className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <img
                       src={app.job.company_logo}
                       alt={app.job.company}
-                      className="w-10 h-10 rounded-xl object-cover border border-slate-100"
+                      className="w-10 h-10 rounded-xl object-cover border border-slate-100 dark:border-slate-800"
                     />
                     <div>
-                      <div className="font-bold text-sm text-slate-900">{app.job.title}</div>
-                      <div className="text-xs text-slate-500">{app.job.company} • Applied {app.applied_at.split('T')[0]}</div>
+                      <div className="font-bold text-sm text-slate-900 dark:text-white">{app.job.title}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400">{app.job.company} • Applied {app.applied_at.split('T')[0]}</div>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${
                       app.status === 'Offer'
-                        ? 'bg-emerald-100 text-emerald-800'
+                        ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800'
                         : app.status === 'Interview'
-                        ? 'bg-purple-100 text-purple-800'
+                        ? 'bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300 border border-purple-300 dark:border-purple-800'
                         : app.status === 'Under Review'
-                        ? 'bg-amber-100 text-amber-800'
+                        ? 'bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-800'
                         : app.status === 'Rejected'
-                        ? 'bg-rose-100 text-rose-800'
-                        : 'bg-blue-100 text-blue-800'
+                        ? 'bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 border border-rose-300 dark:border-rose-800'
+                        : 'bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-300 dark:border-blue-800'
                     }`}>
                       {app.status}
                     </span>
 
                     <button
                       onClick={() => openJobDetails(app.job_id)}
-                      className="text-xs text-slate-600 hover:text-indigo-600 font-semibold px-2 py-1 rounded hover:bg-slate-100"
+                      className="text-xs text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold px-2 py-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                       View
                     </button>
@@ -405,18 +405,18 @@ export const CandidateDashboard: React.FC = () => {
 
       {/* Quick Apply Confirmation Modal */}
       {applyModalJobId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4 animate-in fade-in zoom-in-95 duration-150">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 animate-in fade-in zoom-in-95 duration-150">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Confirm Job Application</h3>
-                <p className="text-xs text-slate-500">
-                  Applying as <strong className="text-slate-800">{currentCandidate.name}</strong>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Confirm Job Application</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Applying as <strong className="text-slate-800 dark:text-slate-200">{currentCandidate.name}</strong>
                 </p>
               </div>
               <button
                 onClick={() => setApplyModalJobId(null)}
-                className="text-slate-400 hover:text-slate-600 text-sm font-bold"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold"
               >
                 ✕
               </button>
@@ -424,29 +424,29 @@ export const CandidateDashboard: React.FC = () => {
 
             {applyFeedback && (
               <div className={`p-3 rounded-lg text-xs font-semibold ${
-                applyFeedback.success ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
+                applyFeedback.success ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
               }`}>
                 {applyFeedback.message}
               </div>
             )}
 
-            <div className="space-y-3 text-xs text-slate-600">
-              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <div className="font-semibold text-slate-800 mb-1">Attached Profile Information:</div>
+            <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">Attached Profile Information:</div>
                 <div>• Verified Skills: {currentCandidate.skills.slice(0, 6).join(', ')}</div>
                 <div>• Resume: {currentCandidate.resume_name || 'Generated CareerPulse Candidate Portfolio'}</div>
                 <div>• Work Preference: {currentCandidate.preferences.work_types.join(', ')}</div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Candidate Note / Cover Note to Recruiter:
                 </label>
                 <textarea
                   rows={3}
                   value={applyCustomNote}
                   onChange={e => setApplyCustomNote(e.target.value)}
-                  className="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -455,7 +455,7 @@ export const CandidateDashboard: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setApplyModalJobId(null)}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
               >
                 Cancel
               </button>

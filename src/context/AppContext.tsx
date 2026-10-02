@@ -7,7 +7,8 @@ import {
   UserRole,
   ApplicationStatus,
   MatchBreakdown,
-  RecommendedJob
+  RecommendedJob,
+  AppNotification
 } from '../types';
 import {
   INITIAL_CANDIDATES,
@@ -22,6 +23,80 @@ import {
   getCandidateCorpusText,
   getJobCorpusText
 } from '../services/aiMatchingEngine';
+
+const INITIAL_NOTIFICATIONS: AppNotification[] = [
+  {
+    id: 'notif-1',
+    recipient_role: 'candidate',
+    recipient_id: 'cand-001',
+    type: 'interview_scheduled',
+    title: 'Interview Scheduled: Technical Round',
+    message: 'Your application for Senior Full Stack Engineer at NextWave Labs has progressed to Interview! Virtual technical round with Principal Architect scheduled.',
+    timestamp: '2026-10-01T14:20:00Z',
+    read: false,
+    related_job_id: 'job-101',
+    related_application_id: 'app-001',
+    status_badge: 'Interview'
+  },
+  {
+    id: 'notif-2',
+    recipient_role: 'candidate',
+    recipient_id: 'cand-001',
+    type: 'status_change',
+    title: 'Application Shortlisted',
+    message: 'Hiring manager at InnovateX Software has moved your application for Frontend UI/UX Engineer to "Under Review".',
+    timestamp: '2026-09-30T16:00:00Z',
+    read: false,
+    related_job_id: 'job-105',
+    related_application_id: 'app-002',
+    status_badge: 'Under Review'
+  },
+  {
+    id: 'notif-3',
+    recipient_role: 'candidate',
+    recipient_id: 'cand-001',
+    type: 'system',
+    title: 'AI Recommendation Match (94%)',
+    message: 'Senior Full Stack Engineer (React & Node) at NextWave Labs was matched to your profile based on TypeScript, React, and Remote work preferences.',
+    timestamp: '2026-09-29T10:00:00Z',
+    read: true,
+    related_job_id: 'job-101'
+  },
+  {
+    id: 'notif-4',
+    recipient_role: 'recruiter',
+    recipient_id: 'rec-001',
+    type: 'new_applicant',
+    title: 'New High-Match Applicant',
+    message: 'Aarav Sharma submitted an application for "Senior Full Stack Engineer (React & Node)" with a 94% AI Match Score!',
+    timestamp: '2026-10-01T08:00:00Z',
+    read: false,
+    related_job_id: 'job-101',
+    related_candidate_id: 'cand-001'
+  },
+  {
+    id: 'notif-5',
+    recipient_role: 'recruiter',
+    recipient_id: 'rec-001',
+    type: 'new_applicant',
+    title: 'New Applicant Received',
+    message: 'Priya Iyer applied for "Machine Learning & NLP Specialist" (96% AI Match Score).',
+    timestamp: '2026-09-30T17:45:00Z',
+    read: false,
+    related_job_id: 'job-102',
+    related_candidate_id: 'cand-002'
+  },
+  {
+    id: 'notif-6',
+    recipient_role: 'recruiter',
+    recipient_id: 'rec-001',
+    type: 'system',
+    title: 'Talent Pool Indexed',
+    message: '10 candidate profiles successfully vectorized and ready for multi-factor TF-IDF screening.',
+    timestamp: '2026-09-29T09:00:00Z',
+    read: true
+  }
+];
 
 interface AppContextType {
   userRole: UserRole;
@@ -38,6 +113,18 @@ interface AppContextType {
   authModalMode: 'login' | 'signup';
   authModalRole: 'candidate' | 'recruiter';
   globalIdf: Map<string, number>;
+
+  // Theme
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+
+  // Notifications
+  notifications: AppNotification[];
+  userNotifications: AppNotification[];
+  unreadNotificationsCount: number;
+  markNotificationAsRead: (id: string) => void;
+  markAllNotificationsAsRead: () => void;
+  clearNotification: (id: string) => void;
 
   // Actions
   setUserRole: (role: UserRole) => void;
@@ -92,6 +179,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved ? JSON.parse(saved) : ['job-101', 'job-105'];
   });
 
+  const [notifications, setNotifications] = useState<AppNotification[]>(() => {
+    const saved = localStorage.getItem('careerpulse_notifications');
+    return saved ? JSON.parse(saved) : INITIAL_NOTIFICATIONS;
+  });
+
+  // Dark mode theme
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = localStorage.getItem('careerpulse_theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('careerpulse_theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const [currentCandidateId, setCurrentCandidateId] = useState<string>('cand-001');
   const [currentRecruiterId, setCurrentRecruiterId] = useState<string>('rec-001');
 
@@ -121,6 +233,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem('careerpulse_saved_jobs', JSON.stringify(savedJobIds));
   }, [savedJobIds]);
 
+  useEffect(() => {
+    localStorage.setItem('careerpulse_notifications', JSON.stringify(notifications));
+  }, [notifications]);
+
   const currentCandidate = useMemo(() => {
     return candidates.find(c => c.candidate_id === currentCandidateId) || candidates[0];
   }, [candidates, currentCandidateId]);
@@ -128,6 +244,47 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const currentRecruiter = useMemo(() => {
     return INITIAL_RECRUITERS.find(r => r.recruiter_id === currentRecruiterId) || INITIAL_RECRUITERS[0];
   }, [currentRecruiterId]);
+
+  // Filtered notifications for the active view / role
+  const userNotifications = useMemo(() => {
+    if (userRole === 'candidate') {
+      return notifications.filter(
+        n => (n.recipient_role === 'candidate' && (!n.recipient_id || n.recipient_id === currentCandidate.candidate_id)) || n.recipient_role === 'all'
+      );
+    }
+    if (userRole === 'recruiter') {
+      return notifications.filter(
+        n => (n.recipient_role === 'recruiter' && (!n.recipient_id || n.recipient_id === currentRecruiter.recruiter_id)) || n.recipient_role === 'all'
+      );
+    }
+    return notifications.filter(n => n.recipient_role === 'all');
+  }, [notifications, userRole, currentCandidate.candidate_id, currentRecruiter.recruiter_id]);
+
+  const unreadNotificationsCount = useMemo(() => {
+    return userNotifications.filter(n => !n.read).length;
+  }, [userNotifications]);
+
+  const markNotificationAsRead = (id: string) => {
+    setNotifications(prev =>
+      prev.map(n => (n.id === id ? { ...n, read: true } : n))
+    );
+  };
+
+  const markAllNotificationsAsRead = () => {
+    setNotifications(prev =>
+      prev.map(n => {
+        const belongsToUser =
+          (userRole === 'candidate' && (n.recipient_role === 'candidate' || n.recipient_role === 'all')) ||
+          (userRole === 'recruiter' && (n.recipient_role === 'recruiter' || n.recipient_role === 'all')) ||
+          userRole === 'guest';
+        return belongsToUser ? { ...n, read: true } : n;
+      })
+    );
+  };
+
+  const clearNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
 
   // Compute corpus-wide IDF across all jobs and candidates for realistic TF-IDF model
   const globalIdf = useMemo(() => {
@@ -213,6 +370,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         j.job_id === jobId ? { ...j, applicant_count: (j.applicant_count || 0) + 1 } : j
       )
     );
+
+    // Generate immediate Notification for Recruiter (User requirement!)
+    const match = calculateJobMatch(currentCandidate, job, globalIdf);
+    const recruiterNotif: AppNotification = {
+      id: `notif-${Date.now()}`,
+      recipient_role: 'recruiter',
+      recipient_id: job.recruiter_id,
+      type: 'new_applicant',
+      title: 'New Applicant Received',
+      message: `${currentCandidate.name} applied for "${job.title}" with a ${match.overallScore}% AI Match Score!`,
+      timestamp: new Date().toISOString(),
+      read: false,
+      related_job_id: jobId,
+      related_candidate_id: currentCandidate.candidate_id
+    };
+    setNotifications(prev => [recruiterNotif, ...prev]);
 
     return { success: true, message: 'Application submitted successfully!' };
   };
@@ -321,9 +494,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         ? 'Application status updated. Profile retained for future relevant roles.'
         : 'Status updated.';
 
+    let targetApp: Application | undefined;
+
     setApplications(prev =>
       prev.map(app => {
         if (app.application_id === applicationId) {
+          targetApp = app;
           const updatedTimeline = [
             ...app.timeline,
             {
@@ -342,6 +518,45 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         return app;
       })
     );
+
+    // Generate immediate Notification for Candidate on application status change (User requirement!)
+    if (targetApp) {
+      const targetJob = getJobById(targetApp.job_id);
+      const notifTitle =
+        status === 'Interview'
+          ? 'Interview Round Scheduled!'
+          : status === 'Offer'
+          ? 'Formal Offer Extended!'
+          : status === 'Under Review'
+          ? 'Application Shortlisted'
+          : status === 'Rejected'
+          ? 'Application Status Concluded'
+          : `Application Status: ${status}`;
+
+      const notifMsg =
+        status === 'Interview'
+          ? `Your application for "${targetJob?.title || 'the role'}" at ${targetJob?.company || 'the hiring company'} has progressed to Interview stage!`
+          : status === 'Offer'
+          ? `Congratulations! ${targetJob?.company || 'The company'} has extended a formal employment offer for "${targetJob?.title || 'the role'}"!`
+          : status === 'Under Review'
+          ? `Your application for "${targetJob?.title || 'the role'}" at ${targetJob?.company || 'the company'} is now actively under review.`
+          : `Your application status for "${targetJob?.title || 'the role'}" has been updated to "${status}".`;
+
+      const candidateNotif: AppNotification = {
+        id: `notif-${Date.now()}`,
+        recipient_role: 'candidate',
+        recipient_id: targetApp.candidate_id,
+        type: status === 'Interview' ? 'interview_scheduled' : status === 'Offer' ? 'offer_extended' : 'status_change',
+        title: notifTitle,
+        message: notifMsg,
+        timestamp: now,
+        read: false,
+        related_job_id: targetApp.job_id,
+        related_application_id: applicationId,
+        status_badge: status
+      };
+      setNotifications(prev => [candidateNotif, ...prev]);
+    }
   };
 
   const switchCandidate = (candidateId: string) => {
@@ -424,6 +639,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         authModalMode,
         authModalRole,
         globalIdf,
+        theme,
+        toggleTheme,
+        notifications,
+        userNotifications,
+        unreadNotificationsCount,
+        markNotificationAsRead,
+        markAllNotificationsAsRead,
+        clearNotification,
         setUserRole,
         setActiveTab,
         openJobDetails,
@@ -457,6 +680,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     </AppContext.Provider>
   );
 };
+
 
 export const useApp = () => {
   const context = useContext(AppContext);

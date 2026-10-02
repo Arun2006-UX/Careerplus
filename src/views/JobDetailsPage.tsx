@@ -77,53 +77,53 @@ export const JobDetailsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 py-8 px-4 sm:px-6 lg:px-8 transition-colors">
       <div className="max-w-5xl mx-auto space-y-6">
         {/* Navigation back */}
         <button
           onClick={() => setActiveTab('jobs')}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-indigo-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Job Search</span>
         </button>
 
         {/* Hero Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs relative overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs relative overflow-hidden">
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="flex items-start gap-4">
               <img
                 src={job.company_logo}
                 alt={job.company}
-                className="w-16 h-16 rounded-2xl object-cover border border-slate-100 shadow-sm shrink-0"
+                className="w-16 h-16 rounded-2xl object-cover border border-slate-100 dark:border-slate-800 shadow-sm shrink-0"
               />
               <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                     {job.title}
                   </h1>
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
                     {job.level}
                   </span>
                 </div>
-                <p className="text-sm font-semibold text-slate-700">
-                  {job.company} • <span className="text-slate-500 font-normal">{job.industry}</span>
+                <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  {job.company} • <span className="text-slate-500 dark:text-slate-400 font-normal">{job.industry}</span>
                 </p>
 
                 {/* Attributes */}
-                <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-500">
-                  <span className="flex items-center gap-1 bg-slate-100 px-2.5 py-1 rounded-md">
+                <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-slate-500 dark:text-slate-400">
+                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-slate-700 dark:text-slate-300">
                     <MapPin className="w-3.5 h-3.5 text-slate-400" />
                     <span>{job.location}</span>
                   </span>
-                  <span className="flex items-center gap-1 bg-slate-100 px-2.5 py-1 rounded-md">
+                  <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-md text-slate-700 dark:text-slate-300">
                     <Clock className="w-3.5 h-3.5 text-slate-400" />
                     <span>{job.work_type}</span>
                   </span>
-                  <span className="bg-indigo-50 text-indigo-700 font-bold px-2.5 py-1 rounded-md">
+                  <span className="bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-bold px-2.5 py-1 rounded-md border border-indigo-200/60 dark:border-indigo-800">
                     {job.salary_range}
                   </span>
-                  <span className="text-[11px] text-slate-400">
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500">
                     Posted on {job.posted_at}
                   </span>
                 </div>
@@ -134,7 +134,7 @@ export const JobDetailsPage: React.FC = () => {
             <div className="flex items-center gap-2 shrink-0 pt-2 md:pt-0">
               <button
                 onClick={handleShare}
-                className="p-2.5 rounded-xl border border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50 transition-colors relative"
+                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative"
                 title="Share Job"
               >
                 <Share2 className="w-4 h-4" />
@@ -149,8 +149,8 @@ export const JobDetailsPage: React.FC = () => {
                 onClick={() => toggleSaveJob(job.job_id)}
                 className={`p-2.5 rounded-xl border transition-colors ${
                   isSaved
-                    ? 'bg-indigo-50 border-indigo-300 text-indigo-600'
-                    : 'border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+                    ? 'bg-indigo-50 dark:bg-indigo-950 border-indigo-300 dark:border-indigo-800 text-indigo-600 dark:text-indigo-400'
+                    : 'border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
                 }`}
                 title={isSaved ? 'Remove from Saved' : 'Save Job'}
               >
@@ -158,8 +158,8 @@ export const JobDetailsPage: React.FC = () => {
               </button>
 
               {existingApp ? (
-                <div className="px-5 py-2.5 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <div className="px-5 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 text-xs font-bold flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>Applied ({existingApp.status})</span>
                 </div>
               ) : (
@@ -342,20 +342,20 @@ export const JobDetailsPage: React.FC = () => {
           {/* Main Info */}
           <div className="lg:col-span-2 space-y-6">
             {/* Description */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">About the Role</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">About the Role</h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 {job.description}
               </p>
             </div>
 
             {/* Responsibilities */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Key Responsibilities</h3>
-              <ul className="space-y-2.5 text-sm text-slate-600">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Key Responsibilities</h3>
+              <ul className="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
                 {job.responsibilities.map((resp, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 mt-2 shrink-0"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 mt-2 shrink-0"></span>
                     <span>{resp}</span>
                   </li>
                 ))}
@@ -363,12 +363,12 @@ export const JobDetailsPage: React.FC = () => {
             </div>
 
             {/* Requirements */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Candidate Requirements</h3>
-              <ul className="space-y-2.5 text-sm text-slate-600">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Candidate Requirements</h3>
+              <ul className="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
                 {job.requirements.map((req, i) => (
                   <li key={i} className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-blue-400 mt-2 shrink-0"></span>
                     <span>{req}</span>
                   </li>
                 ))}
@@ -376,9 +376,9 @@ export const JobDetailsPage: React.FC = () => {
             </div>
 
             {/* Benefits */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-4">
-              <h3 className="text-lg font-bold text-slate-900">Benefits &amp; Perks</h3>
-              <ul className="space-y-2.5 text-sm text-slate-600">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Benefits &amp; Perks</h3>
+              <ul className="space-y-2.5 text-sm text-slate-600 dark:text-slate-300">
                 {job.benefits.map((ben, i) => (
                   <li key={i} className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
@@ -392,36 +392,36 @@ export const JobDetailsPage: React.FC = () => {
           {/* Sidebar Info */}
           <div className="space-y-6">
             {/* Quick Summary Card */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
-              <h4 className="text-sm font-bold text-slate-900">Job Overview</h4>
-              <div className="space-y-3 text-xs text-slate-600 divide-y divide-slate-100">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white">Job Overview</h4>
+              <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-800">
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Company</span>
-                  <span className="font-semibold text-slate-800">{job.company}</span>
+                  <span className="text-slate-400 dark:text-slate-500">Company</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.company}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Industry</span>
-                  <span className="font-semibold text-slate-800">{job.industry}</span>
+                  <span className="text-slate-400 dark:text-slate-500">Industry</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.industry}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Location</span>
-                  <span className="font-semibold text-slate-800">{job.location}</span>
+                  <span className="text-slate-400 dark:text-slate-500">Location</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.location}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Work Format</span>
-                  <span className="font-semibold text-slate-800">{job.work_type}</span>
+                  <span className="text-slate-400 dark:text-slate-500">Work Format</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.work_type}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Experience</span>
-                  <span className="font-semibold text-slate-800">{job.min_experience_years}+ Years</span>
+                  <span className="text-slate-400 dark:text-slate-500">Experience</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.min_experience_years}+ Years</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Compensation</span>
-                  <span className="font-bold text-indigo-700">{job.salary_range}</span>
+                  <span className="text-slate-400 dark:text-slate-500">Compensation</span>
+                  <span className="font-bold text-indigo-700 dark:text-indigo-400">{job.salary_range}</span>
                 </div>
                 <div className="pt-2 flex justify-between">
-                  <span className="text-slate-400">Total Applicants</span>
-                  <span className="font-semibold text-slate-800">{job.applicant_count || 12} Candidates</span>
+                  <span className="text-slate-400 dark:text-slate-500">Total Applicants</span>
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{job.applicant_count || 12} Candidates</span>
                 </div>
               </div>
 
@@ -436,12 +436,12 @@ export const JobDetailsPage: React.FC = () => {
             </div>
 
             {/* Profile sync card */}
-            <div className="bg-slate-100/70 rounded-3xl p-6 border border-slate-200 text-xs space-y-2">
-              <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <div className="bg-slate-100/70 dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
+              <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Audited Matching Data</span>
               </div>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 Matches are calculated based strictly on verified technical skills, experience tenure, and preferences. Demographic attributes are fully masked.
               </p>
             </div>
@@ -451,16 +451,16 @@ export const JobDetailsPage: React.FC = () => {
 
       {/* Apply Modal */}
       {applyModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs">
-          <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Apply to {job.company}</h3>
-                <p className="text-xs text-slate-500">Position: {job.title}</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Apply to {job.company}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Position: {job.title}</p>
               </div>
               <button
                 onClick={() => setApplyModalOpen(false)}
-                className="text-slate-400 hover:text-slate-600 text-sm font-bold"
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-bold"
               >
                 ✕
               </button>
@@ -468,22 +468,22 @@ export const JobDetailsPage: React.FC = () => {
 
             {feedback && (
               <div className={`p-3 rounded-lg text-xs font-semibold ${
-                feedback.success ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-rose-50 text-rose-800 border border-rose-200'
+                feedback.success ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
               }`}>
                 {feedback.message}
               </div>
             )}
 
-            <div className="space-y-3 text-xs text-slate-600">
-              <div className="p-3 bg-indigo-50/50 rounded-xl border border-indigo-100">
-                <div className="font-bold text-indigo-900 mb-1">Applying as: {currentCandidate.name}</div>
+            <div className="space-y-3 text-xs text-slate-600 dark:text-slate-300">
+              <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/40 rounded-xl border border-indigo-100 dark:border-indigo-900">
+                <div className="font-bold text-indigo-900 dark:text-indigo-200 mb-1">Applying as: {currentCandidate.name}</div>
                 <div>• Current Role: {currentCandidate.target_role}</div>
                 <div>• Match Rating: {match.overallScore}%</div>
                 <div>• Attached Resume: {currentCandidate.resume_name || 'Standard CareerPulse Profile CV'}</div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Cover Note / Message to Recruiter:
                 </label>
                 <textarea
@@ -491,7 +491,7 @@ export const JobDetailsPage: React.FC = () => {
                   value={candidateNotes}
                   onChange={e => setCandidateNotes(e.target.value)}
                   placeholder="Share a short note on why you're interested in this role..."
-                  className="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -499,7 +499,7 @@ export const JobDetailsPage: React.FC = () => {
             <div className="flex items-center justify-end gap-2 pt-2">
               <button
                 onClick={() => setApplyModalOpen(false)}
-                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
               >
                 Cancel
               </button>

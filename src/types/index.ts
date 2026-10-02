@@ -135,6 +135,22 @@ export interface MatchBreakdown {
   };
 }
 
+export interface AppNotification {
+  id: string;
+  recipient_role: 'candidate' | 'recruiter' | 'all';
+  recipient_id?: string;
+  type: 'status_change' | 'new_applicant' | 'interview_scheduled' | 'offer_extended' | 'system';
+  title: string;
+  message: string;
+  timestamp: string;
+  read: boolean;
+  related_job_id?: string;
+  related_application_id?: string;
+  related_candidate_id?: string;
+  status_badge?: ApplicationStatus;
+}
+
 export interface RecommendedJob extends Job {
   match: MatchBreakdown;
 }
+
