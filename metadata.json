@@ -1,0 +1,7 @@
+{
+  "name": "CareerPulse - AI-Driven Job Matching Platform",
+  "description": "Intelligent recruitment platform connecting candidates and recruiters using explainable AI-driven TF-IDF job matching and application tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
